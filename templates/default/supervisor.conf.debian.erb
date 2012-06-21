@@ -1,0 +1,6 @@
+[program:sentry-web]
+directory=<%= node['sentry']['dir'] %>
+command=sentry start http
+autostart=true
+autorestart=true
+redirect_stderr=true

@@ -1,0 +1,29 @@
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'sentry',
+        'USER': '<%= node['mysql']['sentry_user'] %>',
+        'PASSWORD': '<%= node['mysql']['sentry_passw'] %>',
+        'HOST': 'localhost',
+        'PORT': '',
+    }
+}
+
+# No trailing slash!
+SENTRY_URL_PREFIX = 'http://sentry.example.com'
+
+# SENTRY_KEY is a unique randomly generated secret key for your server, and it
+# acts as a signing token
+SENTRY_KEY = '0123456789abcde'
+
+SENTRY_WEB_HOST = '<%= node['sentry']['host'] %>'
+SENTRY_WEB_PORT =  <%= node['sentry']['port'] %>
+SENTRY_WEB_OPTIONS = {
+  'worker_class': 'gevent'
+}
+
+EMAIL_HOST = 'localhost'
+EMAIL_HOST_PASSWORD = ''
+EMAIL_HOST_USER = ''
+EMAIL_PORT = 25
+EMAIL_USE_TLS = False

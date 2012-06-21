@@ -1,6 +1,6 @@
-maintainer       "YOUR_COMPANY_NAME"
-maintainer_email "YOUR_EMAIL"
-license          "All rights reserved"
-description      "Installs/Configures sentry"
+maintainer       "Milos Gajdos"
+maintainer_email "milosgajdos83@gmail.com"
+license          "BSD"
+description      "Installs/Configures django sentry envent management tool"
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 version          "0.0.1"
