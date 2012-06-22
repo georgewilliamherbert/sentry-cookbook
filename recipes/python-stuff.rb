@@ -38,7 +38,8 @@ end
 # install required python packages
 # using our own provider
 (%w{ lxml pyOpenSSL MySQL-python virtualenv gevent}).each do |pkg|
-  sentry_pippkg pkg do
+  sentry_pippkg "#{pkg}" do
+    platform node['platform']
     action :install
     provider "sentry_pip"
   end
