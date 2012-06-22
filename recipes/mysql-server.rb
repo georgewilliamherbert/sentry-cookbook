@@ -1,4 +1,4 @@
-include_recipe "mysql::client"
+include_recipe "sentry::mysql-client"
 
 # this is to avoid any interaction with debian based OS during mysql install
 if platform?(%w{debian ubuntu})
