@@ -4,11 +4,13 @@ when "centos", "redhat", "fedora", "suse"
   default['www']['group']            = "apache"
   default['supervisor']['service']   = "supervisord"
   default['supervisor']['config']    = "/etc/supervisord.conf"
+  default['pip']['cmd']		     = "/usr/bin/pip-python"
 else
   default['www']['user']             = "www-data"
   default['www']['group']            = "www-data"
   default['supervisor']['service']   = "supervisor"
   default['supervisor']['config']    = "/etc/supervisor/conf.d/sentry.conf"
+  default['pip']['cmd']		     = "/usr/bin/pip"
 end
 
 default['sentry']['superuser'] = "root"
@@ -21,4 +23,3 @@ default['sentry']['port'] = 9000
 default['mysql']['sentry_user']               = 'sentry_user'
 default['mysql']['sentry_passw']              = 'password3'
 default['mysql']['sentry_db']                 = 'sentry'
-

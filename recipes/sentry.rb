@@ -11,8 +11,10 @@ directory node['sentry']['dir'] do
     mode 0775
 end
 
-python_pip "sentry" do
+sentry_pippkg "sentry" do
+  pipcmd node['pip']['cmd']
   action :install
+  provider "sentry_pip"
 end
 
 template "/etc/sentry.conf.py" do

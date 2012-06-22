@@ -35,11 +35,14 @@ lib_packages.each do |lib_pack|
   end
 end
 
+#we need to retrieve python pip attribute 
+#pip_cmd = node.default['pip']['cmd']
+
 # install required python packages
 # using our own provider
 (%w{ lxml pyOpenSSL MySQL-python virtualenv gevent}).each do |pkg|
   sentry_pippkg "#{pkg}" do
-    platform node['platform']
+    pipcmd "#{node['pip']['cmd']}"
     action :install
     provider "sentry_pip"
   end
