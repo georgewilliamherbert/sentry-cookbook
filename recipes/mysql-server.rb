@@ -60,8 +60,7 @@ service "mysql" do
     start_command "start mysql"
   end
   supports :status => true, :restart => true
-  # why is the action NOTHING here ?
-  action :start
+  action [:enable, :start]
 end
 
 # don't save the node data on chef-solo
