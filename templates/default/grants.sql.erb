@@ -6,5 +6,5 @@ SET PASSWORD FOR 'root'@'localhost' = PASSWORD('<%= node['mysql']['server_root_p
 <% if node['mysql']['allow_remote_root'] -%>
 GRANT ALL ON *.* TO 'root'@'%' IDENTIFIED BY '<%= node['mysql']['server_root_password'] %>' WITH GRANT OPTION;
 <% end -%>
-CREATE DATABASE <%= node['mysql']['sentry_db'] %>;
+CREATE DATABASE IF NOT EXISTS <%= node['mysql']['sentry_db'] %>;
 GRANT ALL PRIVILEGES ON '<%= node['mysql']['sentry_db'] %>'.* TO '<%= node['mysql']['sentry_user'] %>'@'localhost' IDENTIFIED BY '<%= node['mysql']['sentry_passw'] %>';
