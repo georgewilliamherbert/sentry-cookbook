@@ -35,10 +35,12 @@ lib_packages.each do |lib_pack|
   end
 end
 
-#install required python packages
+# install required python packages
+# using our own provider
 (%w{ lxml pyOpenSSL MySQL-python virtualenv gevent}).each do |pkg|
-  python_pip pkg do
+  sentry_pippkg pkg do
     action :install
+    provider "sentry_pip"
   end
 end
 
