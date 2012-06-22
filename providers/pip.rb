@@ -1,7 +1,6 @@
-pip_cmd = case node['platform']
-  when "centos", "redhat", "suse", "fedora"
+pip_cmd = if platform?(%w{centos redhat suse ubuntu})  
     "/usr/bin/pip-python"
-  when "ubuntu","debian"
+  elsif platform?(%w{debian ubuntu})
     "/usr/bin/pip"
   else
     "/usr/bin/pip"
