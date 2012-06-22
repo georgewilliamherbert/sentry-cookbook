@@ -42,7 +42,7 @@ package node['mysql']['package_name'] do
 end
 
 #do this only for debian boxes
-if(defined? node['mysql']['confd_dir'])
+if platform?("ubuntu", "debian")
   directory node['mysql']['confd_dir'] do
     owner "mysql"
     group "mysql"
