@@ -21,10 +21,6 @@ python_packages.each do |pkg|
   end
 end
 
-#other prerequisities which must be installed
-# libxml, zlib, opesssl, libevent
-# TODO: set this stuff
-
 # OS libraries on which the pythong ones depend
 lib_packages = case node['platform']
 when "centos", "redhat", "suse", "fedora"
@@ -39,10 +35,10 @@ lib_packages.each do |lib_pack|
   end
 end
 
-python_pip "virtualenv" do
-  action :install
+#install required python packages
+(%w{ lxml pyOpenSSL MySQL-python virtualenv gevent}).each do |pkg|
+  python_pip pkg do
+    action :install
+  end
 end
 
-python_pip "gevent" do
-  action :install
-end
