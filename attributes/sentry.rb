@@ -15,6 +15,7 @@ end
 
 default['sentry']['superuser'] = "root"
 default['sentry']['password']  = "password"
+default['sentry']['su_email']  = "root@example.org"
 default['sentry']['dir']  = "/var/www/sentry"
 default['sentry']['host'] = '0.0.0.0'
 default['sentry']['port'] = 9000

@@ -12,7 +12,7 @@ directory node['sentry']['dir'] do
 end
 
 sentry_pippkg "sentry" do
-  pipcmd node['pip']['cmd']
+  pipcmd "#{node['pip']['cmd']}"
   action :install
   provider "sentry_pip"
 end
@@ -21,25 +21,33 @@ template "/etc/sentry.conf.py" do
   source "sentry.conf.py.erb"
   owner "root"
   group "root"
-  mode "0600"
+  mode "0644"
 end
 
 # initialize sentry
-execute "sentry init" do
-  command "sentry init /etc/sentry.conf.py"
-  action :run
-end
-
-#create superuser by running something like
-# sentry --config=/etc/sentry.conf.py createsuperuser node['sentry']['superuser'] node['sentry']['password']
-execute "create superuser" do
-  command "sentry --config=/etc/sentry.conf.py createsuperuser #{node['sentry']['superuser']} #{node['sentry']['password']}"
-  action :run
-end
+#execute "sentry init" do
+#  command "sentry init --config=/etc/sentry.conf.py"
+#  action :run
+#end
 
 #create an initial DB
 execute "create init DB" do
-  command "sentry --config=/etc/sentry.conf.py upgrade"
+  command "sentry --config=/etc/sentry.conf.py upgrade --noinput"
+  action :run
+end
+
+# place the authentication template
+template "/etc/sentry.su.json" do
+  source "sentryauth.json.erb"
+  owner "root"
+  group "root"
+  mode  "0600"
+  action :create
+end
+
+#create superuser by running something like
+execute "create superuser" do
+  command "sentry --config=/etc/sentry.conf.py loaddata /etc/sentry.su.json"
   action :run
 end
 
@@ -62,6 +70,5 @@ end
 
 service "supervisor" do
   service_name node['supervisor']['service']
-  action :start 
+  action [:enable, :start] 
 end
-
