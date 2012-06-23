@@ -51,7 +51,7 @@ serverurl=unix:///var/tmp/supervisor.sock ; use a unix:// URL  for a unix socket
 
 [program:sentry-web]
 directory=<%= node['sentry']['dir'] %>
-command=sentry start http
+command=sentry --config=/etc/sentry.conf.py start http
 autostart=true
 autorestart=true
 redirect_stderr=true
