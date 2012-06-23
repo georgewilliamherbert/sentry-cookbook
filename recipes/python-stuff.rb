@@ -21,12 +21,19 @@ python_packages.each do |pkg|
   end
 end
 
+#some ubuntu packages need extra care :(
+if platform? "ubuntu"
+  package "libevent-#{node['libevent']['version']}" do
+    action :install
+  end
+end
+
 # OS libraries on which the pythong ones depend
 lib_packages = case node['platform']
 when "centos", "redhat", "suse", "fedora"
   %w{ libevent libevent-devel zlib zlib-devel openssl openssl-devel}
 when "ubuntu","debian"
-  %w{ libevent libevent-dev zlib1g zlib1g-devel libssl-dev}
+  %w{ libevent-dev zlib1g zlib1g-dev libssl-dev}
 end
 
 lib_packages.each do |lib_pack|

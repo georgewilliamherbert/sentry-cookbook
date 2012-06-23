@@ -8,6 +8,7 @@ when "centos", "redhat", "fedora", "suse"
 else
   default['www']['user']             = "www-data"
   default['www']['group']            = "www-data"
+  default['libevent']['version']     = "2.0-5"
   default['supervisor']['service']   = "supervisor"
   default['supervisor']['config']    = "/etc/supervisor/conf.d/sentry.conf"
   default['pip']['cmd']		     = "/usr/bin/pip"
@@ -15,7 +16,7 @@ end
 
 default['sentry']['superuser'] = "root"
 default['sentry']['password']  = "password"
-default['sentry']['su_email']  = "root@example.org"
+default['sentry']['su_email']  = "some@someother.org"
 default['sentry']['dir']  = "/var/www/sentry"
 default['sentry']['host'] = '0.0.0.0'
 default['sentry']['port'] = 9000

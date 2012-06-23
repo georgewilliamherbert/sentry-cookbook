@@ -4,7 +4,7 @@
     "model": "auth.user",
     "fields": {
       "username": "root",
-      "first_name": <%= node['sentry']['superuser'] %>,
+      "first_name": "<%= node['sentry']['superuser'] %>",
       "last_name": "",
       "is_active": true,
       "is_superuser": true,
@@ -13,7 +13,7 @@
       "groups": [],
       "user_permissions": [],
       "password": "sha1$fae2d$a6e8a073e34f51d614262c149ce3748896098e59",
-      "email": <%= node['sentry']['su_email'] %>,
+      "email": "<%= node['sentry']['su_email'] %>",
       "date_joined": "2012-06-22 22:06:42"
     }
   }

@@ -11,7 +11,7 @@ if platform?(%w{debian ubuntu})
   end
 
   # we need to make sure debconf is installed to proceed with the next step
-  package debconf do
+  package "debconf" do
     action :install
   end
 

@@ -5,6 +5,15 @@
 # Copyright 2012, YOUR_COMPANY_NAME
 #
 
+#if apache isn't installed then /var/www doesn't exist!
+if !File.directory?("/var/www")
+  directory "/var/www" do
+    owner "root"
+    group "root"
+    mode 0755
+  end
+end
+
 directory node['sentry']['dir'] do
     owner node['www']['user']
     group node['www']['user']
